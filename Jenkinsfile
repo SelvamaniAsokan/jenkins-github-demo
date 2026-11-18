@@ -1,5 +1,4 @@
 pipeline {
-
     agent any
 
     stages {
@@ -7,19 +6,19 @@ pipeline {
         stage('Build') {
             steps {
                 echo 'Building Python Project'
-                bat 'py --version'
+                bat '"C:\\Users\\selva\\AppData\\Local\\Python\\bin\\python.exe" --version'
             }
         }
 
         stage('Install') {
             steps {
-                bat 'py -m pip install pytest'
+                bat '"C:\\Users\\selva\\AppData\\Local\\Python\\bin\\python.exe" -m pip install -r requirements.txt'
             }
         }
 
         stage('Test') {
             steps {
-                bat 'py -m pytest -v'
+                bat '"C:\\Users\\selva\\AppData\\Local\\Python\\bin\\python.exe" -m pytest -v --html=report.html --self-contained-html'
             }
         }
     }
@@ -28,9 +27,8 @@ pipeline {
         success {
             echo 'Build Successful!'
         }
-
         failure {
             echo 'Build Failed!'
         }
     }
-}
+}s
